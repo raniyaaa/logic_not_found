@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import './register.css'; // Make sure to import the CSS file
 
-const Signup = () => {
+const Signup = ({ switchToLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignup = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      console.log('Signup:', email, password);
-    } else {
-      alert('Passwords do not match');
+    if (password.length < 6) {
+      alert('Password must be at least 6 characters long.');
+      return;
     }
+    console.log('Signed up with:', email);
+    // Proceed with signup logic
   };
 
   return (
     <div className="auth-container">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -29,27 +29,24 @@ const Signup = () => {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
         <button type="submit">Sign Up</button>
       </form>
       <div className="link-container">
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>
+          Already have an account?{' '}
+          <button onClick={switchToLogin} className="link-button">
+            Login
+          </button>
+        </p>
       </div>
     </div>
   );

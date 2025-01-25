@@ -1,7 +1,7 @@
 /* General body styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fce4ec; /* Light pink background */
+    background-color: #f37ca4d4; /* Light pink background */
     margin: 0;
     padding: 0;
     display: flex;
@@ -16,9 +16,9 @@ body {
     margin: 20px;
     padding: 30px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #ff80ab, #ff4081); /* Gradient from light to dark pink */
+    background: linear-gradient(135deg, #FBF3F3, #FBF3F3); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    color: white;
+    color: #022B3A;
   }
   
   /* Heading styles */
@@ -26,7 +26,7 @@ body {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: white;
+    color: #022B3A;
   }
   
   /* Form layout */
@@ -76,7 +76,7 @@ body {
   }
   
   .link-container a {
-    color: white;
+    color: #022B3A;
     text-decoration: underline;
     font-size: 16px;
   }
