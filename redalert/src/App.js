@@ -1,48 +1,58 @@
-import React, { useState } from 'react';
-import Login from './login'; // Import Login Component
-import Signup from './register'; // Import Signup Component
-import Dashboard from './dashboard'; // Import Dashboard Component
-import './App.css'; // Assuming you have global styles
+import React from 'react';
+import Home from './components/Home'; // Landing/Home page
+import Login from './components/Login'; // User login
+import Registration from './components/Registration'; // User registration
+import EmergencyRequest from './components/EmergencyRequest'; // Emergency product requests
+import Map from './components/Map'; // Map functionality
+import ProductList from './components/ProductList'; // List of available products
+import Chat from './components/Chat'; // Real-time chat functionality
+import PushNotifications from './components/PushNotifications'; // Push notification testing
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('login'); // Default to login page
+const App = () => {
+  // Manage the current view/state manually without React Router
+  const [currentPage, setCurrentPage] = React.useState('home');
 
-  // Switch to login page
-  const handleSwitchToLogin = () => {
-    console.log("Switching to Login Page");
-    setCurrentPage('login');
-  };
-
-  // Switch to signup page
-  const handleSwitchToSignup = () => {
-    console.log("Switching to Signup Page");
-    setCurrentPage('signup');
-  };
-
- 
-
-  // Render the current page
   const renderPage = () => {
-    console.log("Current Page:", currentPage);  // Add logging to check currentPage state
-    if (currentPage === 'login') {
-      return <Login switchToSignup={handleSwitchToSignup} />;
-    } else if (currentPage === 'signup') {
-      return <Signup switchToLogin={handleSwitchToLogin} />;
-    } else if (currentPage === 'dashboard') {
-      return <Dashboard switchToLogin={handleSwitchToLogin} />;
+    switch (currentPage) {
+      case 'home':
+        return <Home />;
+      case 'login':
+        return <Login />;
+      case 'register':
+        return <Registration />;
+      case 'emergency-request':
+        return <EmergencyRequest />;
+      case 'map':
+        return <Map />;
+      case 'products':
+        return <ProductList />;
+      case 'chat':
+        return <Chat />;
+      case 'notifications':
+        return <PushNotifications />;
+      default:
+        return <h2>404 - Page Not Found</h2>;
     }
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>RedAlert - Connecting Women Near You</h1>
-      </header>
-      <main>
-        {renderPage()}
-      </main>
+    <div>
+      {/* Simple Navigation Menu */}
+      <nav>
+        <button onClick={() => setCurrentPage('home')}>Home</button>
+        <button onClick={() => setCurrentPage('login')}>Login</button>
+        <button onClick={() => setCurrentPage('register')}>Register</button>
+        <button onClick={() => setCurrentPage('emergency-request')}>Emergency Request</button>
+        <button onClick={() => setCurrentPage('map')}>Map</button>
+        <button onClick={() => setCurrentPage('products')}>Products</button>
+        <button onClick={() => setCurrentPage('chat')}>Chat</button>
+        <button onClick={() => setCurrentPage('notifications')}>Notifications</button>
+      </nav>
+
+      {/* Render the selected page */}
+      <main>{renderPage()}</main>
     </div>
   );
-}
+};
 
 export default App;
